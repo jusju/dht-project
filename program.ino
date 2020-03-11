@@ -22,7 +22,6 @@ void setup() {
 
 void loop() {
   delay(2000);
-  lcd.print("Hello, world!");
   float h = dht.readHumidity();
   float t = dht.readTemperature();
   float f = dht.readTemperature(true);
@@ -36,6 +35,15 @@ void loop() {
   float hic = dht.computeHeatIndex(t, h, false);
 
   Serial.print(F("Humidity: "));
+  lcd.setCursor(0,0);
+  lcd.print("Temp: ");
+  lcd.print(t);
+  lcd.print("C");
+  lcd.setCursor(0,1);
+  lcd.print("Hum: ");
+  lcd.print(h);
+  lcd.print("%");
+   
   Serial.print(h);
   Serial.print(F("%  Temperature: "));
   Serial.print(t);
