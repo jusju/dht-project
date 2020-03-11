@@ -1,4 +1,9 @@
 #include "DHT.h"
+#include <Wire.h> 
+#include <LiquidCrystal_I2C.h>
+
+// Set the LCD address to 0x27 for a 16 chars and 2 line display
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 #define DHTPIN 2
 #define DHTTYPE DHT22
@@ -9,11 +14,15 @@ void setup() {
   Serial.println(F("DHTxx test!"));
 
   dht.begin();
+  lcd.begin();
+
+  // Turn on the blacklight and print a message.
+  lcd.backlight();
 }
 
 void loop() {
   delay(2000);
-
+  lcd.print("Hello, world!");
   float h = dht.readHumidity();
   float t = dht.readTemperature();
   float f = dht.readTemperature(true);
